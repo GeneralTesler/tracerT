@@ -12,7 +12,7 @@ This utility has two submodules. The first submodule (GHDB) will scrape the [Goo
 2. A [Custom Search Engine](https://cse.google.com)
     - Scope the search engine to a TLD matching the target domain. See the image below for clarification
 
-![](/img/csesource.png)
+![](https://raw.githubusercontent.com/GeneralTesler/tracerT/master/img/csesources.png)
 
 ## Setup
 
