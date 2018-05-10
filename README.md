@@ -26,12 +26,12 @@ pip install -r requirements.txt
 
 Print GHDB categories
 ```
-python tracerT.py --cat-list 
+python tracerT.py ghdb --cat-list 
 ```
 
 Retrive dorks for a category
 ```
-python tracerT.py -c 9 -o dorks.csv 
+python tracerT.py ghdb -c 9 -o dorks.csv 
 ```
 
 Full help
