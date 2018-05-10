@@ -4,7 +4,7 @@ Automated Google dorking with custom search engines
 
 ## Description
 
-This utility has two submodules. The first submodule (GHDB) will scrape the [Google Hacking Database](https://www.exploit-db.com/google-hacking-database/) for dorks in a given category then save them to a local file. The second submodule will take an input file of Google dorks and query them against the Google Custom Search Engine API for a given target domain. If a dorks reeturns any results, the dork will be saved to a local file.
+This utility has two submodules. The first submodule (GHDB) will scrape the [Google Hacking Database](https://www.exploit-db.com/google-hacking-database/) for dorks in a given category then save them to a local file. The second submodule will take an input file of Google dorks and query them against the Google Custom Search Engine API for a given target domain. If a dorks returns any results, the dork will be saved to a local file. The third module will take a comma separated list of TLDS (e.g. 'com,net,io') and produce a TSV configuration file that can be imported into a CSE.
 
 ## Prerequisities
 
@@ -77,15 +77,36 @@ optional arguments:
 - --skip-lc: The CSE API has a limit of 100 queries per day for the free tier so the script is set to not run if the input file exceeds 100 lines. If you are willing to pay for extended use, you can use this switch to disable the line count check
 - -f, --format: The script accepts both .txt and .csv input files. Text file input should be a newline delimited list of dorks. CSV file input should be in the format of 'GHDB ID,Dork'. This is also the output given by the GHDB submodule. Make sure to leave the column title in the file (the script will remove it). This argument is optional. However, the script will use the file extension to determine the format if you omit it.
 
+**TSV submodule**
+
+Generate TSV configuration file
+```
+python tracerT.py tsv -o annotations.tsv -i 'com,net,io' -x <cse id>
+```
+
+Full help
+```
+usage: tracerT tsv [-h] -x CSECONF -o OUTCONF -i ITLD
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -x CSECONF, --cse CSECONF
+                        CSE ID
+  -o OUTCONF, --out-file OUTCONF
+                        output file for config
+  -i ITLD, --itld ITLD  comma separated TLDs
+
+```
+
 ## To-dos & Feature Requests
 
-- Submodule to generate 'annotations.xml' file (the sources for a CSE) from a list of TLDs
-    - Status: in-progress
+
 
 ## Known Issues
 
 - Retrieving dorks from GHDB for category 1 will fail. This appears to be an issue with the site itself not properly displaying the dorks.
 
 ## Changelog
- 
+
+- 05/09/2018 - Added TSV submodule 
 - 02/11/2018 - Initial release

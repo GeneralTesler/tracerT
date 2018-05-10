@@ -7,13 +7,7 @@ from bs4 import BeautifulSoup
 from texttable import Texttable
 
 __author__ = '@2xxeformyshirt'
-__version__ = '1.0.0'
-
-'''
-NEW MODULES:
-- TLDs to Annotations
-    - convert list of TLDs to XML annotations for import in CSE 
-'''
+__version__ = '2.0.0'
 
 '''
 --------------------------------
@@ -165,7 +159,56 @@ def writeoutres(results):
 --------------------------------
 end CSE functions
 --------------------------------
+
+--------------------------------
+start TSV functions
+--------------------------------
 '''
+def generatetsvfile(tlds,cxt):
+    '''given input list of tlds, generate tsv in proper format'''
+    tsv = 'URL\tLabel\tScore\n'
+    for tld in tlds:
+        tsv += '*.%s/*\t_cse_%s\t1.000000\n' % (tld,cxt)
+
+    with open(args['outconf'], 'w+') as f:
+        f.write(tsv)
+
+    print '[+] Configuration written to: '+args['outconf']
+
+'''
+--------------------------------
+end TSV functions
+--------------------------------
+'''
+
+def tsv_main(args):
+    '''Main function for GHDB operation'''
+
+    '''basic arg checking'''
+    if os.path.isfile(args['outconf']):
+        print '[-] Output file already exists'
+        os._exit(1)
+    if ':' not in args['cseconf']:
+        print '[-] Invalid CSE ID'
+        os._exit(1)
+    if len(args['itld']) < 2:
+        print '[-] Invalid TLD input'
+        os._exit(1)
+
+    '''only second half of cse id is required for config'''
+    cxt = (args['cseconf']).split(':')[-1]
+    
+    '''parse tld string'''
+    tlds = []
+    tsplit = (args['itld']).split(',')
+    if len(tsplit) == 1:
+        tlds.append(tsplit[0].strip())
+    else:
+        for tld in tsplit:
+            tlds.append(tld.strip())
+
+    print '[+] Generating configuration'
+    generatetsvfile(tlds,cxt)   
 
 def cse_main(args):
     '''Main function for CSE operation'''
@@ -243,8 +286,10 @@ if __name__ == "__main__":
             ghdb_main(args)
         if sys.argv[1] == 'cse':
             cse_main(args)
+        if sys.argv[1] == 'tsv':
+            tsv_main(args)
     except KeyboardInterrupt:
         print '[-] User termination! Quitting early'
         os._exit(1)
-    except:
-        print '[-] Error! Quitting early'
+    #except:
+    #    print '[-] Error! Quitting early'

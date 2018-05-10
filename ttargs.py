@@ -78,3 +78,25 @@ parser_cse.add_argument('-o',
                          dest='outres',
                          help='output file for search results (CSV)',
                          required=True)
+
+''''Annotations parser'''
+parser_tsv = subparsers.add_parser('tsv',
+                                    help='generate a CSE config file')
+parser_tsv.add_argument('-x',
+                        '--cse',
+                        dest='cseconf', 
+                        type=str, 
+                        help='CSE ID',
+                        required=True)
+parser_tsv.add_argument('-o', 
+                         '--out-file', 
+                         type=str,
+                         dest='outconf',
+                         help='output file for config',
+                         required=True)
+parser_tsv.add_argument('-i', 
+                        '--itld',
+                        dest='itld',
+                        type=str,
+                        help='comma separated TLDs',
+                        required=True)
