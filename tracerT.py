@@ -127,16 +127,14 @@ def querycse(dorks):
         dork = dork.replace('\n','')
         queryu = urlbase + urllib.quote_plus(dork)
         r = requests.get(queryu, headers=useragent, allow_redirects=True)
-        try:
-            rjson = r.json()
-        except:
-            print '[-] Error querying dork: '+dork
-            pass
-        if int(rjson['queries']['request'][0]['totalResults']) == 0:
-            pass
+        
+        if str(r.status_code)[:1] == '2':
+            if int(rjson['queries']['request'][0]['totalResults']) > 0:
+                numres = rjson['queries']['request'][0]['totalResults']
+                results.append(dork+','+numres)  
         else:
-            numres = rjson['queries']['request'][0]['totalResults']
-            results.append(dork+','+numres)  
+            print '[-] Error querying dork: '+dork
+
     return results
 
 def writeoutres(results):
