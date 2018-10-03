@@ -129,6 +129,7 @@ def querycse(dorks):
         r = requests.get(queryu, headers=useragent, allow_redirects=True)
         
         if str(r.status_code)[:1] == '2':
+            rjson = r.json()
             if int(rjson['queries']['request'][0]['totalResults']) > 0:
                 numres = rjson['queries']['request'][0]['totalResults']
                 results.append(dork+','+numres)  
