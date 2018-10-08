@@ -8,7 +8,7 @@ This utility has two submodules. The first submodule (GHDB) will scrape the [Goo
 
 ## Prerequisities
 
-1. A valid API key. Generate one from the [Google Developer Console](https://console.developers.google.com)
+1. A valid API key. Generate one from the [Google Developer Console](https://console.developers.google.com) (Make sure to first enable the Custom Search API).
 2. A [Custom Search Engine](https://cse.google.com)
 
     Scope the search engine to no site and set the dropdown to search the entire web. See the image below for clarification
