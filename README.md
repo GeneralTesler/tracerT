@@ -29,8 +29,6 @@ pip install -r requirements.txt
 
 **GHDB submodule**
 
-*Note: GHDB has recently changed considerably, so this module may not work. This will eventually be addressed.*
-
 Print GHDB categories
 ```
 python tracerT.py ghdb --cat-list 
