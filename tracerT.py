@@ -53,7 +53,7 @@ def retrievedork(url):
 def retrievedorklist(catid):
     '''given a category id, return a list of dorks'''
     print '[+] Pulling list of dorks from GHDB'
-    url = 'https://www.exploit-db.com/google-hacking-database/%s/' % str(catid)
+    url = 'https://old.exploit-db.com/google-hacking-database/%s/' % str(catid)
     r = requests.get(url, headers=useragent, allow_redirects=True)
     soup = BeautifulSoup(r.content, 'lxml')
     dorks = extractdorks(soup)
