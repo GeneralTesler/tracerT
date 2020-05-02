@@ -1,5 +1,7 @@
 # tracerT
 
+**note: this project is no longer maintained and is incompatible with the current GHDB site**
+
 Automated Google dorking with custom search engines
 
 ## Description
